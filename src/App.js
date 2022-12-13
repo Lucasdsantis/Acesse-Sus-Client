@@ -5,7 +5,7 @@ import { Signup } from "./pages/SingUp";
 import { AuthContextComponent } from "./contexts/authContext";
 import { Profile } from "./pages/Profile";
 import { ErrorPage } from "./pages/ErrorPage";
-
+import { LoginRoot } from "./pages/LoginRoot";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/loginroot" element={<LoginRoot />} />
           <Route
             path="/profile"
             element={<ProtectedRoute component={Profile} />}
