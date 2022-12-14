@@ -12,11 +12,13 @@ import { AgenteDeSaude } from "./pages/AgenteDeSaude";
 import { ConsultaMedica } from "./pages/ConsultaMedica";
 import { Medico } from "./pages/Medico";
 import { Paciente } from "./pages/Paciente";
+import { NavBar } from "./components/NavBar";
 
 function App() {
   return (
     <>
       <AuthContextComponent>
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
