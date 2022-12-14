@@ -11,7 +11,7 @@ export function ProtectedRoute(props) {
 
   useEffect(() => {
     console.log(parsedUser);
-    if (parsedUser.user.role !== "ADMIN") {
+    if (parsedUser.user.role !== "ROOT") {
       navigate("/login");
     }
   }, []);
