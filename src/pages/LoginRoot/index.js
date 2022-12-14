@@ -17,7 +17,7 @@ export function LoginRoot() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  async function handleSumit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     try {
@@ -33,22 +33,24 @@ export function LoginRoot() {
   }
 
   return (
-    <form onSubmit={handleSumit}>
-      <label>Email:</label>
-      <input
-        type="email"
-        name="email"
-        value={form.email}
-        onChange={handleChange}
-      />
-      <label>Senha:</label>
-      <input
-        type="password"
-        name="password"
-        value={form.password}
-        onChange={handleChange}
-      />
-      <button type="submit">Entrar!</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+        />
+        <label>Senha:</label>
+        <input
+          type="password"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+        />
+        <button type="submit">Entrar!</button>
+      </form>
+    </div>
   );
 }
