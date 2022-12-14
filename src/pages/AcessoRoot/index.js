@@ -4,8 +4,13 @@ import { api } from "../../api/api";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 export function AcessoRoot() {
+  const cardStyle = {
+    alingItems: "center",
+  };
+
   const navigate = useNavigate();
   const { id } = useParams();
   const [agenteDeSaude, setAgenteDeSaude] = useState([]);
@@ -51,24 +56,27 @@ export function AcessoRoot() {
 
     //       <button>Criar novo Agente de Saúde</button>
     //     </div>
-    <Card style={{ width: "18rem" }}>
-      <Card.Body>
-        <Card.Title>Agentes de Saúde</Card.Title>
-        <Card.Text>
-          <div>
-            {agenteDeSaude.map((currentAs) => {
-              return (
-                <div>
-                  <h6>{currentAs.name}</h6>
-                  <button>Editar</button>
-                  <button onClick={handleDelete}>Deletar</button>
-                </div>
-              );
-            })}
-          </div>
-        </Card.Text>
-        <Button variant="primary">Criar novo Agente de Saúde</Button>
-      </Card.Body>
-    </Card>
+    <div style={cardStyle}>
+      <Card style={{ width: "18rem" }}>
+        <Card.Body>
+          <Card.Title>Agentes de Saúde</Card.Title>
+
+          <Link href="../AgenteDeSaude">
+            <Button variant="primary">Criar novo Agente de Saúde</Button>
+          </Link>
+        </Card.Body>
+      </Card>
+      <div>
+        {agenteDeSaude.map((currentAs) => {
+          return (
+            <div>
+              <h6>{currentAs.name}</h6>
+              <button>Editar</button>
+              <button onClick={handleDelete}>Deletar</button>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
