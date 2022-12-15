@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function ProtectedRoute(props) {
+export function ProtectedRouteMED(props) {
   const { component: Component } = props;
   const navigate = useNavigate();
 
@@ -11,7 +11,7 @@ export function ProtectedRoute(props) {
 
   useEffect(() => {
     console.log(parsedUser);
-    if (parsedUser) {
+    if (parsedUser.user.role !== "MED") {
       navigate("/");
     }
   }, []);

@@ -1,20 +1,25 @@
 import { Routes, Route } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { Signup } from "./pages/SingUp";
 import { AuthContextComponent } from "./contexts/authContext";
-import { Profile } from "./pages/Profile";
-import { ErrorPage } from "./pages/ErrorPage";
-import { LoginRoot } from "./pages/LoginRoot";
-import { ProtectedRoute } from "./components/ProtectedRoute";
-import { ProtectedRouteROOT } from "./components/ProtectedAdminRoute";
-import { AcessoRoot } from "./pages/AcessoRoot";
-import { AgenteDeSaude } from "./pages/AgenteDeSaude";
-import { ConsultaMedica } from "./pages/ConsultaMedica";
-import { MedicoPage } from "./pages/Medico";
-import { PacientePage } from "./pages/Paciente";
+
+import { Home } from "./pages/Home";
 import { NavBar } from "./components/NavBar";
+
+import { ProtectedRouteROOT } from "./components/ProtectRoutes/ProtectedAdminRoute";
+import { LoginRoot } from "./pages/LoginRoot";
+import { AcessoRoot } from "./pages/AcessoRoot";
 import { FormAS } from "./pages/FormAs";
-import { ProtectedRoutePAC } from "./components/ProtectRoutePAC";
+
+import { ProtectedRoutePAC } from "./components/ProtectRoutes/ProtectRoutePAC";
+import { PacientePage } from "./pages/Paciente";
+
+import { ProtectedRouteAGS } from "./components/ProtectRoutes/ProtectedRouteAGS";
+import { AgenteDeSaude } from "./pages/AgenteDeSaude";
+
+import { ProtectedRouteMED } from "./components/ProtectRoutes/ProtectedRouteMED";
+import { MedicoPage } from "./pages/Medico";
+import { ConsultaMedica } from "./pages/ConsultaMedica";
+
+import { ErrorPage } from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -30,18 +35,23 @@ function App() {
           />
           <Route path="/cadastroas" element={<FormAS />} />
 
-          <Route path="/agentedesaude" element={<AgenteDeSaude />} />
+          <Route
+            path="/agentedesaude"
+            element={<ProtectedRouteAGS component={AgenteDeSaude} />}
+          />
 
-          <Route path="/medico" element={<MedicoPage />} />
-          <Route path="/consultamedica" element={<ConsultaMedica />} />
+          <Route
+            path="/medico"
+            element={<ProtectedRouteMED component={MedicoPage} />}
+          />
+          <Route
+            path="/consultamedica"
+            element={<ProtectedRouteMED component={ConsultaMedica} />}
+          />
 
           <Route
             path="/paciente"
             element={<ProtectedRoutePAC component={PacientePage} />}
-          />
-          <Route
-            path="/profile"
-            element={<ProtectedRoute component={Profile} />}
           />
 
           <Route path="*" element={<ErrorPage />} />
