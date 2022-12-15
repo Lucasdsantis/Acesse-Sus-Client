@@ -17,16 +17,16 @@ export function LoginRoot() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmitx(e) {
     e.preventDefault();
 
     try {
-      const response = await api.post("/user/login", form);
+      const response = await api.post("/Root/login", form);
       setLoggedInUser({ ...response.data });
 
       localStorage.setItem("loggedInUser", JSON.stringify(response.data));
 
-      navigate("/profile");
+      navigate("/acessoroot");
     } catch (error) {
       console.log(error);
     }
@@ -34,22 +34,24 @@ export function LoginRoot() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>Email:</label>
+      <form onSubmit={handleSubmitx}>
+        <label htmlFor="email">Email:</label>
         <input
           type="email"
           name="email"
+          id="email"
           value={form.email}
           onChange={handleChange}
         />
-        <label>Senha:</label>
+        <label htmlFor="senha">Senha:</label>
         <input
           type="password"
           name="password"
+          id="senha"
           value={form.password}
           onChange={handleChange}
         />
-        <button type="submit">Entrar!</button>
+        <button type="submit">Entrar</button>
       </form>
     </div>
   );
