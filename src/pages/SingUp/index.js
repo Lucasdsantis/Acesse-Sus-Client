@@ -74,6 +74,9 @@ export function Signup() {
         name="password"
         type="password"
         value={form.password}
+        pattern={
+          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/gm
+        }
         onChange={handleChange}
       />
       <label htmlFor="formConfirmPassword">Confirmação de senha</label>

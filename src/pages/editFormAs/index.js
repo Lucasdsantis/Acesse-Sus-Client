@@ -1,15 +1,14 @@
-import { useState } from "react";
-import { api } from "../../api/api";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { api } from "../../api/api";
 
-export function FormAS() {
-  const formBody = {
-    width: "25rem",
-    margin: "2rem",
-  };
-
+export function EditFormAs() {
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const [img, setImg] = useState("");
 
   const [form, setForm] = useState({
     nome: "",
@@ -22,6 +21,18 @@ export function FormAS() {
     foto: "",
   });
 
+  useEffect(() => {
+    async function FetchTip() {
+      try {
+        const response = await api.get(`/AGS/:id/${id.id}`);
+        setForm(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    FetchTip();
+  }, []);
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
@@ -29,20 +40,24 @@ export function FormAS() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    try {
-      await api.post("/Root/cadastrar_AGS", form);
+    // const infosToSendForAPI = { ...form };
+    // delete infosToSendForAPI._id;
+    // console.log(infosToSendForAPI);
 
-      navigate("../AgenteDeSaude");
+    try {
+      await api.patch("/edit/:id ");
+
+      navigate(`/agentedesaude`);
     } catch (err) {
       console.log(err);
-      toast.error("Oops! Something went worng...");
+      toast.error("Ops! Algo deu errado ...");
     }
   }
 
   return (
     <center>
       <h1>Cadastro Agente de Saúde</h1>
-      <form style={formBody} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className={"mb-3"}>
           <label htmlFor="input-nome" className={"form-label"}>
             Nome:
