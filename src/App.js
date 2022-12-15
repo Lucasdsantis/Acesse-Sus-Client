@@ -13,6 +13,7 @@ import { ConsultaMedica } from "./pages/ConsultaMedica";
 import { Medico } from "./pages/Medico";
 import { Paciente } from "./pages/Paciente";
 import { NavBar } from "./components/NavBar";
+import { FormAS } from "./pages/FormAs";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             path="/acessoroot"
             element={<ProtectedRoute component={AcessoRoot} />}
           />
+          <Route path="/cadastroas" element={<FormAS />} />
           <Route path="/agentedesaude" element={<AgenteDeSaude />} />
           <Route path="/consultamedica" element={<ConsultaMedica />} />
           <Route path="/medico" element={<Medico />} />
