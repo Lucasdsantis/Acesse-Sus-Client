@@ -4,6 +4,16 @@ import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 
 export function LoginRoot() {
+  const bodyLogin = {
+    padding: "2rem",
+    display: "flex",
+    flexDirection: "collum",
+  };
+
+  const formName = {
+    margin: "1rem",
+  };
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -33,26 +43,34 @@ export function LoginRoot() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmitx}>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={form.email}
-          onChange={handleChange}
-        />
-        <label htmlFor="senha">Senha:</label>
-        <input
-          type="password"
-          name="password"
-          id="senha"
-          value={form.password}
-          onChange={handleChange}
-        />
-        <button type="submit">Entrar</button>
-      </form>
-    </div>
+    <center>
+      <div>
+        <form style={bodyLogin} onSubmit={handleSubmitx}>
+          <label style={formName} htmlFor="email">
+            Email:
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={form.email}
+            onChange={handleChange}
+          />
+          <label style={formName} htmlFor="senha">
+            Senha:
+          </label>
+          <input
+            type="password"
+            name="password"
+            id="senha"
+            value={form.password}
+            onChange={handleChange}
+          />
+          <button style={formName} type="submit">
+            Entrar
+          </button>
+        </form>
+      </div>
+    </center>
   );
 }

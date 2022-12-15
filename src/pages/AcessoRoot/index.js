@@ -38,6 +38,48 @@ export function AcessoRoot() {
     fetchProducts();
   }, []);
 
+  const [img, setImg] = useState("");
+
+  function handleChange(e) {
+    setAgenteDeSaude({ ...agenteDeSaude, [e.target.name]: e.target.value });
+  }
+
+  function handleImage(e) {
+    setImg(e.target.files[0]);
+  }
+
+  async function handleUpload() {
+    try {
+      const uploadData = new FormData();
+      uploadData.append("picture", img);
+
+      const response = await api.post(
+        "/API/1.0/Root/cadastrar_AGS",
+        uploadData
+      );
+
+      return response.data.url;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const imgURL = await handleUpload();
+      await api.post("/API/1.0/Root/cadastrar_AGS", {
+        ...agenteDeSaude,
+        img: imgURL,
+      });
+
+      navigate("/cadastroas");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function handleDelete(agenteDeSaudeId) {
     try {
       await api.delete(`/Root/delete/${agenteDeSaudeId}`);
