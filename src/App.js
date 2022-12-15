@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
-import { Login } from "./pages/Login";
 import { Signup } from "./pages/SingUp";
 import { AuthContextComponent } from "./contexts/authContext";
 import { Profile } from "./pages/Profile";
 import { ErrorPage } from "./pages/ErrorPage";
 import { LoginRoot } from "./pages/LoginRoot";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { ProtectedRouteROOT } from "./components/ProtectedAdminRoute";
 import { AcessoRoot } from "./pages/AcessoRoot";
 import { AgenteDeSaude } from "./pages/AgenteDeSaude";
 import { ConsultaMedica } from "./pages/ConsultaMedica";
@@ -23,11 +23,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/loginroot" element={<LoginRoot />} />
           <Route
             path="/acessoroot"
-            element={<ProtectedRoute component={AcessoRoot} />}
+            element={<ProtectedRouteROOT component={AcessoRoot} />}
           />
           <Route path="/cadastroas" element={<FormAS />} />
           <Route path="/agentedesaude" element={<AgenteDeSaude />} />
