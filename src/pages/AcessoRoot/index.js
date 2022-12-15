@@ -61,7 +61,7 @@ export function AcessoRoot() {
         <Card.Body>
           <Card.Title>Agentes de Saúde</Card.Title>
 
-          <Link href="../AgenteDeSaude">
+          <Link href="../FormAs">
             <Button variant="primary">Criar novo Agente de Saúde</Button>
           </Link>
         </Card.Body>
