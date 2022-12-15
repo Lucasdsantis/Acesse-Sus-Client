@@ -50,8 +50,6 @@ export function MedicoPage() {
     fetchUser();
   }, []);
 
-  console.log(user);
-
   function handleLogOut() {
     localStorage.removeItem("loggedInUser");
     navigate("/");
@@ -66,13 +64,19 @@ export function MedicoPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
+  const [paciente, setPaciente] = useState(null);
+
   async function handleSumit(e) {
     e.preventDefault();
 
-    try {
-      const response = await api.get("/PAC", form);
+    console.log(form);
 
-      navigate("/agentedesaude");
+    try {
+      const response = await api.get(`/MED/info_paciente/${form.cpf}`);
+      console.log(response);
+      setPaciente(response.data);
+
+      localStorage.setItem("paciente", JSON.stringify(response.data));
     } catch (error) {
       console.log(error);
     }
@@ -107,12 +111,14 @@ export function MedicoPage() {
                     placeholder="Insira o CPF do paciente"
                     type="text"
                     name="cpf"
-                    value={form.email}
+                    value={form.cpf}
                     onChange={handleChange}
                   />
                 </Form.Group>
               </Form>
-              <Button variant="primary">Acessar</Button>
+              <Button variant="primary" onClick={handleSumit}>
+                Acessar
+              </Button>
             </Card.Body>
           </Card>
         </div>

@@ -6,6 +6,7 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 
 import { differenceInYears, parse } from "date-fns";
+import { Button } from "react-bootstrap";
 
 export function PacientePage() {
   const divMae = {
@@ -24,7 +25,29 @@ export function PacientePage() {
     margin: "1.2rem",
   };
 
-  const [user, setUser] = useState({});
+  const divConsultasStyle = {
+    border: "1px solid black",
+    margin: "0.7rem",
+  };
+
+  const [user, setUser] = useState({
+    consulta: {
+      historico: [
+        {
+          createdAt: "",
+          diagnostico: "",
+          info: "",
+          medico: "",
+          obs: "",
+          pacienteId: "",
+          prognostico: "",
+          receita: "",
+        },
+      ],
+    },
+    medico: "",
+  });
+
   const navigate = useNavigate();
   useEffect(() => {
     async function fetchUser() {
@@ -94,7 +117,7 @@ export function PacientePage() {
           </div>
         </Tab>
         <Tab eventKey="profile" title="Consultas">
-          {1 < 2 ? (
+          {!user.consulta ? (
             <center>Você ainda não tem nenhum registro de consulta</center>
           ) : (
             <>
@@ -121,34 +144,35 @@ export function PacientePage() {
                 <br />
                 <br />
                 <h3>Consultas Anteriores</h3>
-                {user.consulta.historico.length < 1 ? (
+                {String(user.consulta.historico).length < 1 ? (
                   <>
                     <br />
                     <h6>Não há outro registros médicos a serem exibidos</h6>
                   </>
                 ) : (
-                  user.consulta.historico.map((el) => {
+                  user.consulta.historico.map((el, i) => {
                     return (
-                      <>
-                        Feita pela médico: {el.consulta.medico}, <br /> Data:{" "}
-                        {el.consulta.createdAt} (data esta certa?)
+                      <div style={divConsultasStyle}>
+                        <p>consulta: {user.consulta.historico.length - i} </p>
+                        Feita pela médico: {el.medico}, <br /> Data:{" "}
+                        {el.createdAt} (data esta certa?)
                         <br />
                         <br />
                         Relatos do Paciente: <br />
-                        {el.consulta.info} <br />
+                        {el.info} <br />
                         <br />
                         Diagnóstico: <br />
-                        {el.consulta.diagnostico} <br />
+                        {el.diagnostico} <br />
                         <br />
                         Prognóstico: <br />
-                        {el.consulta.prognostico} <br />
+                        {el.prognostico} <br />
                         <br />
                         Receita: <br />
-                        {el.consulta.receita} <br />
+                        {el.receita} <br />
                         <br />
                         Observações: <br />
-                        {el.consulta.obs} <br />
-                      </>
+                        {el.obs} <br />
+                      </div>
                     );
                   })
                 )}
