@@ -14,6 +14,7 @@ import { MedicoPage } from "./pages/Medico";
 import { PacientePage } from "./pages/Paciente";
 import { NavBar } from "./components/NavBar";
 import { FormAS } from "./pages/FormAs";
+import { ProtectedRoutePAC } from "./components/ProtectRoutePAC";
 
 function App() {
   return (
@@ -34,7 +35,10 @@ function App() {
           <Route path="/medico" element={<MedicoPage />} />
           <Route path="/consultamedica" element={<ConsultaMedica />} />
 
-          <Route path="/paciente" element={<PacientePage />} />
+          <Route
+            path="/paciente"
+            element={<ProtectedRoutePAC component={PacientePage} />}
+          />
           <Route
             path="/profile"
             element={<ProtectedRoute component={Profile} />}

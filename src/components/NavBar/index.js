@@ -42,7 +42,7 @@ export function NavBar(props) {
           <Navbar.Brand>Acesse Sus</Navbar.Brand>
           <div style={divStyle}>
             <Nav className="me-auto">
-              {1 > 2 ? (
+              {loggedInUser ? (
                 <>
                   <Button variant="primary" onClick={goToProfile}>
                     {loggedInUser.user.name}
