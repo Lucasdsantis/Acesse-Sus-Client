@@ -17,6 +17,7 @@ export function LoginAGS() {
   const cardBodyStyle = {
     display: "flex",
     flexDirection: "column",
+    wrap: "wrap",
     gap: "0.8rem",
   };
 

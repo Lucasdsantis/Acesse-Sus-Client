@@ -7,7 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/authContext";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const divStyle = {
   display: "flex",
@@ -39,7 +39,9 @@ export function NavBar(props) {
     <>
       <Navbar bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand>Acesse Sus</Navbar.Brand>
+          <Link style={{ textDecoration: "none" }} to="/">
+            <Navbar.Brand>Acesse Sus</Navbar.Brand>
+          </Link>
           <div style={divStyle}>
             <Nav className="me-auto">
               {loggedInUser ? (
