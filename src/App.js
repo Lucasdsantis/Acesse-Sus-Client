@@ -14,6 +14,7 @@ import { PacientePage } from "./pages/Paciente";
 
 import { ProtectedRouteAGS } from "./components/ProtectRoutes/ProtectedRouteAGS";
 import { AgenteDeSaude } from "./pages/AgenteDeSaude";
+import { EditFormAs } from "./pages/editFormAs";
 
 import { ProtectedRouteMED } from "./components/ProtectRoutes/ProtectedRouteMED";
 import { MedicoPage } from "./pages/Medico";
@@ -38,6 +39,11 @@ function App() {
           <Route
             path="/agentedesaude"
             element={<ProtectedRouteAGS component={AgenteDeSaude} />}
+          />
+
+          <Route
+            path="/editformas"
+            element={<ProtectedRouteAGS component={EditFormAs} />}
           />
 
           <Route

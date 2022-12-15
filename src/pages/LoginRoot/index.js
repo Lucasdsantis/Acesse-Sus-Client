@@ -27,7 +27,7 @@ export function LoginRoot() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmitx(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     try {
@@ -45,7 +45,7 @@ export function LoginRoot() {
   return (
     <center>
       <div>
-        <form style={bodyLogin} onSubmit={handleSubmitx}>
+        <form style={bodyLogin} onSubmit={handleSubmit}>
           <label style={formName} htmlFor="email">
             Email:
           </label>
