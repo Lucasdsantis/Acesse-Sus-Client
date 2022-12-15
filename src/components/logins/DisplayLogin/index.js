@@ -14,16 +14,16 @@ export function DisplayLogin(props) {
   return (
     <>
       <Card style={cardStyle}>
-        <Card.Header as="h3">Entrar</Card.Header>
+        <Card.Header as="h3">Você é</Card.Header>
         <Card.Body style={cardBodyStyle}>
           <Button variant="primary" onClick={props.functionshowPAC}>
-            Pacientes
+            Paciente
           </Button>
           <Button variant="primary" onClick={props.functionshowMED}>
-            Médicos
+            Médico
           </Button>
           <Button variant="primary" onClick={props.functionshowAGS}>
-            Agentes de Saúde
+            Agente de Saúde
           </Button>
         </Card.Body>
       </Card>

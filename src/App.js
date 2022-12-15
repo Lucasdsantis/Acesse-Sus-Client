@@ -10,8 +10,8 @@ import { ProtectedRouteROOT } from "./components/ProtectedAdminRoute";
 import { AcessoRoot } from "./pages/AcessoRoot";
 import { AgenteDeSaude } from "./pages/AgenteDeSaude";
 import { ConsultaMedica } from "./pages/ConsultaMedica";
-import { Medico } from "./pages/Medico";
-import { Paciente } from "./pages/Paciente";
+import { MedicoPage } from "./pages/Medico";
+import { PacientePage } from "./pages/Paciente";
 import { NavBar } from "./components/NavBar";
 import { FormAS } from "./pages/FormAs";
 
@@ -22,17 +22,19 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
           <Route path="/loginroot" element={<LoginRoot />} />
           <Route
             path="/acessoroot"
             element={<ProtectedRouteROOT component={AcessoRoot} />}
           />
           <Route path="/cadastroas" element={<FormAS />} />
+
           <Route path="/agentedesaude" element={<AgenteDeSaude />} />
+
+          <Route path="/medico" element={<MedicoPage />} />
           <Route path="/consultamedica" element={<ConsultaMedica />} />
-          <Route path="/medico" element={<Medico />} />
-          <Route path="/paciente" element={<Paciente />} />
+
+          <Route path="/paciente" element={<PacientePage />} />
           <Route
             path="/profile"
             element={<ProtectedRoute component={Profile} />}
