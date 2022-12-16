@@ -60,7 +60,6 @@ export function FormMED() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(form);
     try {
       const imgURL = await handleUpload();
       await api.post("/AGS/signupMED", { ...form, foto: imgURL });
