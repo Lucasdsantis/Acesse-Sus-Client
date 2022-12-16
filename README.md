@@ -6,6 +6,7 @@ Apresentação:
 https://onedrive.live.com/edit.aspx?resid=420415C6171F00BA!5956&app=PowerPoint&wdnd=1&wdPreviousSession=6eac0cde%2Da6da%2D4249%2D9f60%2Dca367de6eb7a&wdNewAndOpenCt=1671170427355&wdOrigin=wacFileNew&wdPreviousCorrelation=898948f6%2D6d2d%2D4307%2D8e93%2De04bafafb6ca
 
 Aplicação Web:
+https://acesse-sus.netlify.app/
 
 
 # team 
