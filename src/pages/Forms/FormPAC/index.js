@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { api } from "../../../api/api";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export function FormPAC() {
   const formBody = {
     width: "25rem",
     margin: "2rem",
+  };
+
+  const buttonBackStyle = {
+    display: "flex",
+    justifyContent: "flex-end",
+    margin: "1rem",
   };
 
   const navigate = useNavigate();
@@ -38,9 +45,17 @@ export function FormPAC() {
       toast.error("Oops! Something went worng...");
     }
   }
+  function goBack() {
+    navigate("/agentedesaude");
+  }
 
   return (
     <center>
+      <div style={buttonBackStyle}>
+        <Button variant="secondary" onClick={goBack}>
+          Voltar
+        </Button>
+      </div>
       <h1>Cadastro Agente de Saúde</h1>
       <form style={formBody} onSubmit={handleSubmit}>
         <div className={"mb-3"}>
