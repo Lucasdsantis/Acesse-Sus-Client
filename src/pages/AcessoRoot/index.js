@@ -118,47 +118,43 @@ export function AcessoRoot() {
 
   return (
     <>
-      <div style={cardStyle}>
-        <Card style={{ width: "32rem", heigth: "45rem" }}>
-          <Card.Title style={cardName}>Agentes de Saúde</Card.Title>
-          <Card.Body style={cardBody}>
-            {agenteDeSaude.map((currentAs) => {
-              return (
-                <div style={divCard}>
-                  <Card id="userCard" style={cardStyleMap}>
-                    <Card.Img src={currentAs.foto} />
-                    <Card.Body>
-                      <Card.Title> {currentAs.name} </Card.Title>
-                      <Card.Text>
-                        {" "}
-                        Posto: {currentAs.posto} <br /> CPF: {currentAs.cpf}
-                      </Card.Text>
-                      <Button
-                        style={buttonInsideCard}
-                        variant="success"
-                        onClick={goEditForm}
-                      >
-                        Editar
-                      </Button>
-                      <Button
-                        style={buttonInsideCard}
-                        variant="danger"
-                        onClick={() => {
-                          handleDelete(currentAs._id);
-                        }}
-                      >
-                        Deletar
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </div>
-              );
-            })}
-          </Card.Body>
-          <Button style={botaoCriarNovoAg} variant="primary" onClick={goForm}>
+    <div style={cardStyle}>
+      <Card style={{ width: "18rem" }}>
+        <Card.Body>
+          <Card.Title>Agentes de Saúde</Card.Title>
+          <Button variant="primary" onClick={goForm}>
             Criar novo Agente de Saúde
           </Button>
-        </Card>
+        </Card.Body>
+      </Card>
+      <div>
+        {agenteDeSaude.map((currentAs) => {
+          return (
+            <div>
+              <Card style={cardStyleMap}>
+                <Card.Img src={currentAs.foto} />
+                <Card.Body>
+                  <Card.Title> {currentAs.name} </Card.Title>
+                  <Card.Text>
+                    {" "}
+                    Posto: {currentAs.posto} <br /> CPF: {currentAs.cpf}
+                  </Card.Text>
+                  <Button variant="success" onClick={goEditForm}>
+                    Editar
+                  </Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      handleDelete(currentAs._id);
+                    }}
+                  >
+                    Deletar
+                  </Button>
+                </Card.Body>
+              </Card>
+            </div>
+          );
+        })}
       </div>
     </>
   );

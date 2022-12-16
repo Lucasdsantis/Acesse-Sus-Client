@@ -51,7 +51,7 @@ function App() {
             element={<ProtectedRouteMED component={MedicoPage} />}
           />
           <Route
-            path="/consultamedica"
+            path="/consultamedica/:id"
             element={<ProtectedRouteMED component={ConsultaMedica} />}
           />
 
