@@ -123,26 +123,28 @@ export function PacientePage() {
             <>
               <center>
                 <h3>Última consulta</h3>
-                Feita pela médico: {user.consulta.medico}, <br />
-                Data: {user.consulta.createdAt}
-                <br />
-                <br />
-                Relatos do Paciente: <br />
-                {user.consulta.info} <br />
-                <br />
-                Diagnóstico: <br />
-                {user.consulta.diagnostico} <br />
-                <br />
-                Prognóstico: <br />
-                {user.consulta.prognostico} <br />
-                <br />
-                Receita: <br />
-                {user.consulta.receita} <br />
-                <br />
-                Observações: <br />
-                {user.consulta.obs} <br />
-                <br />
-                <br />
+                <div style={divConsultasStyle}>
+                  Feita pela médico: {user.consulta.medico}, <br />
+                  Data: {user.consulta.createdAt}
+                  <br />
+                  <br />
+                  Relatos do Paciente: <br />
+                  {user.consulta.info} <br />
+                  <br />
+                  Diagnóstico: <br />
+                  {user.consulta.diagnostico} <br />
+                  <br />
+                  Prognóstico: <br />
+                  {user.consulta.prognostico} <br />
+                  <br />
+                  Receita: <br />
+                  {user.consulta.receita} <br />
+                  <br />
+                  Observações: <br />
+                  {user.consulta.obs} <br />
+                  <br />
+                  <br />
+                </div>
                 <h3>Consultas Anteriores</h3>
                 {String(user.consulta.historico).length < 1 ? (
                   <>
@@ -155,7 +157,7 @@ export function PacientePage() {
                       <div style={divConsultasStyle}>
                         <p>consulta: {user.consulta.historico.length - i} </p>
                         Feita pela médico: {el.medico}, <br /> Data:{" "}
-                        {el.createdAt} (data esta certa?)
+                        {el.createdAt}
                         <br />
                         <br />
                         Relatos do Paciente: <br />
