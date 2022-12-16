@@ -12,7 +12,7 @@ export function ProtectedRouteROOT(props) {
   useEffect(() => {
     console.log(parsedUser);
     if (parsedUser.root.role !== "ROOT") {
-      navigate("/Root/login");
+      navigate("loginroot");
     }
   }, []);
 
