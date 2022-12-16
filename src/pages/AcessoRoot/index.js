@@ -9,14 +9,34 @@ import { Link } from "react-router-dom";
 export function AcessoRoot() {
   const cardStyleMap = {
     alingItems: "center",
-    width: "12rem",
+    width: "25rem",
     heigth: "10rem",
-    display: "flex",
-    flexDirection: "row",
   };
 
   const cardStyle = {
-    width: "12rem",
+    width: "30rem",
+  };
+
+  const cardName = {
+    margin: "2rem",
+  };
+  const cardBody = {
+    border: "none",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+  };
+
+  const divCard = {
+    width: "25rem",
+  };
+
+  const botaoCriarNovoAg = {
+    margin: "1rem",
+  };
+
+  const buttonInsideCard = {
+    margin: "0.5rem",
   };
 
   const navigate = useNavigate();
@@ -53,10 +73,7 @@ export function AcessoRoot() {
       const uploadData = new FormData();
       uploadData.append("picture", img);
 
-      const response = await api.post(
-        "/API/1.0/Root/cadastrar_AGS",
-        uploadData
-      );
+      const response = await api.post("/Root/cadastrar_AGS", uploadData);
 
       return response.data.url;
     } catch (error) {
@@ -69,7 +86,7 @@ export function AcessoRoot() {
 
     try {
       const imgURL = await handleUpload();
-      await api.post("/API/1.0/Root/cadastrar_AGS", {
+      await api.post("/Root/cadastrar_AGS", {
         ...agenteDeSaude,
         img: imgURL,
       });
@@ -100,44 +117,49 @@ export function AcessoRoot() {
   }
 
   return (
-    <div style={cardStyle}>
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Title>Agentes de Saúde</Card.Title>
-          <Button variant="primary" onClick={goForm}>
+    <>
+      <div style={cardStyle}>
+        <Card style={{ width: "32rem", heigth: "45rem" }}>
+          <Card.Title style={cardName}>Agentes de Saúde</Card.Title>
+          <Card.Body style={cardBody}>
+            {agenteDeSaude.map((currentAs) => {
+              return (
+                <div style={divCard}>
+                  <Card id="userCard" style={cardStyleMap}>
+                    <Card.Img src={currentAs.foto} />
+                    <Card.Body>
+                      <Card.Title> {currentAs.name} </Card.Title>
+                      <Card.Text>
+                        {" "}
+                        Posto: {currentAs.posto} <br /> CPF: {currentAs.cpf}
+                      </Card.Text>
+                      <Button
+                        style={buttonInsideCard}
+                        variant="success"
+                        onClick={goEditForm}
+                      >
+                        Editar
+                      </Button>
+                      <Button
+                        style={buttonInsideCard}
+                        variant="danger"
+                        onClick={() => {
+                          handleDelete(currentAs._id);
+                        }}
+                      >
+                        Deletar
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                </div>
+              );
+            })}
+          </Card.Body>
+          <Button style={botaoCriarNovoAg} variant="primary" onClick={goForm}>
             Criar novo Agente de Saúde
           </Button>
-        </Card.Body>
-      </Card>
-      <div>
-        {agenteDeSaude.map((currentAs) => {
-          return (
-            <div>
-              <Card style={cardStyleMap}>
-                <Card.Img src={currentAs.foto} />
-                <Card.Body>
-                  <Card.Title> {currentAs.name} </Card.Title>
-                  <Card.Text>
-                    {" "}
-                    Posto: {currentAs.posto} <br /> CPF: {currentAs.cpf}
-                  </Card.Text>
-                  <Button variant="success" onClick={goEditForm}>
-                    Editar
-                  </Button>
-                  <Button
-                    variant="danger"
-                    onClick={() => {
-                      handleDelete(currentAs._id);
-                    }}
-                  >
-                    Deletar
-                  </Button>
-                </Card.Body>
-              </Card>
-            </div>
-          );
-        })}
+        </Card>
       </div>
-    </div>
+    </>
   );
 }

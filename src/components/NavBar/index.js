@@ -29,6 +29,7 @@ export function NavBar(props) {
     if (loggedInUser.user.role === "PAC") navigate("/paciente");
     if (loggedInUser.user.role === "MED") navigate("/medico");
     if (loggedInUser.user.role === "AGS") navigate("/agentedesaude");
+    if (loggedInUser.root.role === "AGS") navigate("/acessoroot");
   }
 
   function goHome() {
@@ -47,7 +48,9 @@ export function NavBar(props) {
               {loggedInUser ? (
                 <>
                   <Button variant="primary" onClick={goToProfile}>
-                    {loggedInUser.user.name}
+                    {loggedInUser.root
+                      ? loggedInUser.root.name
+                      : loggedInUser.user.name}
                   </Button>
                   <Button
                     variant="primary"

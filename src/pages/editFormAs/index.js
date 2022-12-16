@@ -24,7 +24,7 @@ export function EditFormAs() {
   useEffect(() => {
     async function FetchTip() {
       try {
-        const response = await api.get(`/AGS/:id/${id.id}`);
+        const response = await api.get(`/AGS/${id.id}`);
         setForm(response.data);
       } catch (err) {
         console.log(err);

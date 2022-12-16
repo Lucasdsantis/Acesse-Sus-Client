@@ -12,10 +12,9 @@ export function FormAS() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    nome: "",
+    name: "",
     email: "",
-    senha: "",
-    função: "",
+    password: "",
     cpf: "",
     rg: "",
     posto: "",
@@ -25,14 +24,15 @@ export function FormAS() {
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
-
+  console.log(form);
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
+      console.log(form);
       await api.post("/Root/cadastrar_AGS", form);
 
-      navigate("../AgenteDeSaude");
+      navigate("/acessoroot");
     } catch (err) {
       console.log(err);
       toast.error("Oops! Something went worng...");
@@ -44,15 +44,15 @@ export function FormAS() {
       <h1>Cadastro Agente de Saúde</h1>
       <form style={formBody} onSubmit={handleSubmit}>
         <div className={"mb-3"}>
-          <label htmlFor="input-nome" className={"form-label"}>
+          <label htmlFor="input-name" className={"form-label"}>
             Nome:
           </label>
           <input
             type="text"
             className={"form-control"}
-            id="input-nome"
-            name="nome"
-            value={form.nome}
+            id="input-name"
+            name="name"
+            value={form.name}
             onChange={handleChange}
           />
         </div>
@@ -61,41 +61,28 @@ export function FormAS() {
           <label htmlFor="input-email" className={"form-label"}>
             Email:
           </label>
-          <select
+          <input
             className={"form-control"}
             id="input-email"
             name="email"
             defaultValue={form.email}
             onChange={handleChange}
-          ></select>
+            type="email"
+          ></input>
         </div>
 
         <div className={"mb-3"}>
           <label htmlFor="input-senha" className={"form-label"}>
             Senha:
           </label>
-          <select
-            type="senha"
+          <input
+            type="password"
             className={"form-control"}
             id="input-senha"
-            name="senha"
-            defaultValue={form.senha}
+            name="password"
+            defaultValue={form.password}
             onChange={handleChange}
-          ></select>
-        </div>
-
-        <div className={"mb-3"}>
-          <label htmlFor="input-funcao" className={"form-label"}>
-            Função:
-          </label>
-          <input
-            type="text"
-            className={"form-control"}
-            id="input-funcao"
-            name="funcao"
-            value={form.funcao}
-            onChange={handleChange}
-          />
+          ></input>
         </div>
 
         <div className={"mb-3"}>
@@ -103,12 +90,13 @@ export function FormAS() {
             CPF:
           </label>
           <textarea
-            type="number"
+            type="text"
             className={"form-control"}
             id="input-cpf"
             name="cpf"
             value={form.cpf}
             onChange={handleChange}
+            pattern={/[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}/gm}
           ></textarea>
         </div>
 
@@ -117,12 +105,13 @@ export function FormAS() {
             RG:
           </label>
           <textarea
-            type="number"
+            type="text"
             className={"form-control"}
             id="input-rg"
             name="rg"
             value={form.rg}
             onChange={handleChange}
+            pattern={/[0-9]{2}[0-9]{3}[0-9]{3}[0-9]{2}/gm}
           ></textarea>
         </div>
 
