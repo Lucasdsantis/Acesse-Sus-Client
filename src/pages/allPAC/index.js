@@ -47,8 +47,8 @@ export function AllPAC() {
     }
   }
 
-  function goEditForm() {
-    navigate("/");
+  function goEditForm(id) {
+    navigate(`/editPAC/${id}`);
   }
 
   function goBack() {
@@ -73,7 +73,12 @@ export function AllPAC() {
                   {" "}
                   Posto: {el.posto} <br /> CPF: {el.cpf}
                 </Card.Text>
-                <Button variant="success" onClick={goEditForm}>
+                <Button
+                  variant="success"
+                  onClick={() => {
+                    goEditForm(el._id);
+                  }}
+                >
                   Editar
                 </Button>
                 <Button

@@ -47,8 +47,8 @@ export function AllMED() {
     }
   }
 
-  function goEditForm() {
-    navigate("/");
+  function goEditForm(id) {
+    navigate(`/editMED/${id}`);
   }
 
   function goBack() {
@@ -73,7 +73,12 @@ export function AllMED() {
                   {" "}
                   Posto: {el.posto} <br /> CPF: {el.cpf}
                 </Card.Text>
-                <Button variant="success" onClick={goEditForm}>
+                <Button
+                  variant="success"
+                  onClick={() => {
+                    goEditForm(el._id);
+                  }}
+                >
                   Editar
                 </Button>
                 <Button

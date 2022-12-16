@@ -2,10 +2,17 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../../api/api";
+import Button from "react-bootstrap/Button";
 
 export function EditFormPAC() {
   const editFormStyle = {
     margin: "3rem",
+  };
+
+  const buttonBackStyle = {
+    display: "flex",
+    justifyContent: "flex-end",
+    margin: "1rem",
   };
 
   const navigate = useNavigate();
@@ -55,9 +62,18 @@ export function EditFormPAC() {
     }
   }
 
+  function goBack() {
+    navigate("/agentedesaude");
+  }
+
   return (
     <div style={editFormStyle}>
-      <h1>Editar Agente de Saúde</h1>
+      <div style={buttonBackStyle}>
+        <Button variant="secondary" onClick={goBack}>
+          Voltar
+        </Button>
+      </div>
+      <h1>Editar Paciente</h1>
       <form onSubmit={handleSubmit}>
         <div className={"mb-3"}>
           <label htmlFor="input-nome" className={"form-label"}>
