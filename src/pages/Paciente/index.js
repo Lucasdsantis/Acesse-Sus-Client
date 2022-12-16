@@ -64,11 +64,6 @@ export function PacientePage() {
 
   console.log(user);
 
-  function handleLogOut() {
-    localStorage.removeItem("loggedInUser");
-    navigate("/");
-  }
-
   function calculateAge(dob) {
     const date = parse(dob, "dd/MM/yyyy", new Date());
     const age = differenceInYears(new Date(), date);

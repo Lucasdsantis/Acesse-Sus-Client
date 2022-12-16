@@ -70,15 +70,17 @@ export function MedicoPage() {
     e.preventDefault();
 
     try {
-      const response = await api.get(`/MED/info_paciente/${form.cpf}`);
-      console.log(response);
+      const response = await api.get(
+        `/MED/info_paciente_c/${String(form.cpf)}`
+      );
       setPaciente(response.data);
 
       // localStorage.setItem("paciente", JSON.stringify(response.data));
     } catch (error) {
       console.log(error);
     }
-    navigate(`/consultamedica/${paciente.consulta}`);
+    console.log(paciente);
+    navigate(`/consultamedica/${String(form.cpf)}`);
   }
 
   return (
