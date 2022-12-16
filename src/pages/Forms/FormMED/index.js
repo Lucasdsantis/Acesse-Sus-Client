@@ -26,7 +26,7 @@ export function FormMED() {
     rg: "",
     posto: "",
     CRM: "",
-    UF: "..",
+    UF: "",
     especialidade: "",
     role: "MED",
   });
@@ -50,11 +50,6 @@ export function FormMED() {
   }
 
   function handleChange(e) {
-    if (e.target.name === "UF") {
-      setForm({ ...form, UF: e.target.UF });
-      return;
-    }
-
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
@@ -63,7 +58,7 @@ export function FormMED() {
     try {
       const imgURL = await handleUpload();
       await api.post("/AGS/signupMED", { ...form, foto: imgURL });
-
+      console.log(form);
       navigate("/allMED");
     } catch (err) {
       console.log(err);
@@ -207,6 +202,7 @@ export function FormMED() {
               defaultValue={form.UF}
               onChange={handleChange}
             >
+              <option value="..">..</option>
               <option value="AC">AC</option>
               <option value="AL">AL</option>
               <option value="AP">AP</option>
@@ -233,7 +229,6 @@ export function FormMED() {
               <option value="SP">SP</option>
               <option value="SE">SE</option>
               <option value="TO">TO</option>
-              <option value="..">..</option>
             </select>
           </div>
 

@@ -58,7 +58,6 @@ export function ConsultaMedica() {
   const params = useParams();
 
   const [paciente, setPaciente] = useState({
-    name: "",
     consulta: {
       historico: [
         {
@@ -74,12 +73,11 @@ export function ConsultaMedica() {
       ],
     },
     medico: "",
-    foto: "",
   });
   useEffect(() => {
     async function fetchPAC() {
       try {
-        const response = await api.get(`/MED/info_paciente_id/${params.id}`);
+        const response = await api.get(`/MED/info_paciente_c/${params.id}`);
         setPaciente(response.data);
       } catch (err) {
         console.log(err);
@@ -101,7 +99,6 @@ export function ConsultaMedica() {
     prognostico: "",
     receita: "",
     obs: "",
-    foto: "",
   });
 
   function handleChange(e) {
@@ -113,13 +110,15 @@ export function ConsultaMedica() {
 
     try {
       console.log(form);
-      await api.post(`/MED/consulta/${paciente._id}`, form);
+      await api.post(`/MED/consulta/${String(paciente.consulta._id)}`, form);
 
       window.location.reload();
     } catch (error) {
       console.log(error);
     }
   }
+
+  console.log(paciente);
 
   return (
     <>
