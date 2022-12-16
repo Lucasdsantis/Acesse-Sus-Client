@@ -26,9 +26,14 @@ export function NavBar(props) {
   }
 
   function goToProfile() {
-    if (loggedInUser.user.role === "PAC") navigate("/paciente");
-    if (loggedInUser.user.role === "MED") navigate("/medico");
-    if (loggedInUser.user.role === "AGS") navigate("/agentedesaude");
+    if (loggedInUser.user && loggedInUser.user.role === "PAC")
+      navigate("/paciente");
+    if (loggedInUser.user && loggedInUser.user.role === "MED")
+      navigate("/medico");
+    if (loggedInUser.user && loggedInUser.user.role === "AGS")
+      navigate("/agentedesaude");
+    if (loggedInUser.root && loggedInUser.root.role === "ROOT")
+      navigate("/acessoroot");
   }
 
   function goHome() {
