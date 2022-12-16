@@ -48,7 +48,7 @@ export function AllPAC() {
   }
 
   function goEditForm() {
-    navigate("/editar-as");
+    navigate("/");
   }
 
   function goBack() {

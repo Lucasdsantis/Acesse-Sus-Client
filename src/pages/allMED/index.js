@@ -48,7 +48,7 @@ export function AllMED() {
   }
 
   function goEditForm() {
-    navigate("/editar-as");
+    navigate("/");
   }
 
   function goBack() {
