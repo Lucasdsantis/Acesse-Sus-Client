@@ -95,8 +95,8 @@ export function AcessoRoot() {
     navigate("/cadastroas");
   }
 
-  function goEditForm() {
-    navigate("/editar-as");
+  function goEditForm(id) {
+    navigate(`/editformas/${id}`);
   }
 
   return (
@@ -121,7 +121,12 @@ export function AcessoRoot() {
                     {" "}
                     Posto: {currentAs.posto} <br /> CPF: {currentAs.cpf}
                   </Card.Text>
-                  <Button variant="success" onClick={goEditForm}>
+                  <Button
+                    variant="success"
+                    onClick={() => {
+                      goEditForm(currentAs._id);
+                    }}
+                  >
                     Editar
                   </Button>
                   <Button

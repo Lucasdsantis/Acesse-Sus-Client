@@ -8,21 +8,23 @@ import { ProtectedRouteROOT } from "./components/ProtectRoutes/ProtectedAdminRou
 import { LoginRoot } from "./pages/LoginRoot";
 import { AcessoRoot } from "./pages/AcessoRoot";
 import { FormAS } from "./pages/Forms/FormAs";
+import { EditFormAs } from "./pages/Forms/editFormAs";
 
 import { ProtectedRoutePAC } from "./components/ProtectRoutes/ProtectRoutePAC";
 import { PacientePage } from "./pages/Paciente";
 import { FormPAC } from "./pages/Forms/FormPAC";
 import { AllPAC } from "./pages/allPAC";
+import { EditFormPAC } from "./pages/Forms/editFormPAC";
 
 import { ProtectedRouteAGS } from "./components/ProtectRoutes/ProtectedRouteAGS";
 import { AgenteDeSaude } from "./pages/AgenteDeSaude";
-import { EditFormAs } from "./pages/editFormAs";
 
 import { ProtectedRouteMED } from "./components/ProtectRoutes/ProtectedRouteMED";
 import { MedicoPage } from "./pages/Medico";
 import { ConsultaMedica } from "./pages/ConsultaMedica";
 import { FormMED } from "./pages/Forms/FormMED";
 import { AllMED } from "./pages/allMED";
+import { EditFormMED } from "./pages/Forms/editFormMED";
 
 import { ErrorPage } from "./pages/ErrorPage";
 
@@ -38,7 +40,15 @@ function App() {
             path="/acessoroot"
             element={<ProtectedRouteROOT component={AcessoRoot} />}
           />
-          <Route path="/cadastroas" element={<FormAS />} />
+          <Route
+            path="/cadastroas"
+            element={<ProtectedRouteROOT component={FormAS} />}
+          />
+
+          <Route
+            path="/editformas/:id"
+            element={<ProtectedRouteROOT component={EditFormAs} />}
+          />
 
           <Route
             path="/agentedesaude"
@@ -49,6 +59,10 @@ function App() {
             element={<ProtectedRouteAGS component={FormPAC} />}
           />
           <Route
+            path="/cadastroPAC"
+            element={<ProtectedRouteAGS component={EditFormPAC} />}
+          />
+          <Route
             path="/allPAC"
             element={<ProtectedRouteAGS component={AllPAC} />}
           />
@@ -57,13 +71,12 @@ function App() {
             element={<ProtectedRouteAGS component={FormMED} />}
           />
           <Route
+            path="/cadastroMED"
+            element={<ProtectedRouteAGS component={EditFormMED} />}
+          />
+          <Route
             path="/allMED"
             element={<ProtectedRouteAGS component={AllMED} />}
-          />
-
-          <Route
-            path="/editformas"
-            element={<ProtectedRouteAGS component={EditFormAs} />}
           />
 
           <Route
