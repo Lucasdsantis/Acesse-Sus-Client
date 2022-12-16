@@ -103,7 +103,7 @@ export function AcessoRoot() {
     <div style={cardStyle}>
       <Card style={{ width: "18rem" }}>
         <Card.Body>
-          <Card.Title>Agentes de Saúde</Card.Title>
+          <Card.Title>Agentes de Saude</Card.Title>
           <Button variant="primary" onClick={goForm}>
             Criar novo Agente de Saúde
           </Button>
