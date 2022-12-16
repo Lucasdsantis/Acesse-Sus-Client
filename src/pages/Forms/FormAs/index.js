@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { api } from "../../api/api";
+import { api } from "../../../api/api";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -12,10 +12,9 @@ export function FormAS() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    nome: "",
+    name: "",
     email: "",
-    senha: "",
-    função: "",
+    password: "",
     cpf: "",
     rg: "",
     posto: "",
@@ -32,7 +31,7 @@ export function FormAS() {
     try {
       await api.post("/Root/cadastrar_AGS", form);
 
-      navigate("../AgenteDeSaude");
+      navigate("/acessoroot");
     } catch (err) {
       console.log(err);
       toast.error("Oops! Something went worng...");
@@ -51,8 +50,8 @@ export function FormAS() {
             type="text"
             className={"form-control"}
             id="input-nome"
-            name="nome"
-            value={form.nome}
+            name="name"
+            value={form.name}
             onChange={handleChange}
           />
         </div>
@@ -61,69 +60,55 @@ export function FormAS() {
           <label htmlFor="input-email" className={"form-label"}>
             Email:
           </label>
-          <select
+          <input
             className={"form-control"}
             id="input-email"
             name="email"
             defaultValue={form.email}
             onChange={handleChange}
-          ></select>
+          ></input>
         </div>
 
         <div className={"mb-3"}>
-          <label htmlFor="input-senha" className={"form-label"}>
+          <label htmlFor="input-password" className={"form-label"}>
             Senha:
           </label>
-          <select
-            type="senha"
+          <input
+            type="password"
             className={"form-control"}
             id="input-senha"
-            name="senha"
-            defaultValue={form.senha}
+            name="password"
+            defaultValue={form.password}
             onChange={handleChange}
-          ></select>
-        </div>
-
-        <div className={"mb-3"}>
-          <label htmlFor="input-funcao" className={"form-label"}>
-            Função:
-          </label>
-          <input
-            type="text"
-            className={"form-control"}
-            id="input-funcao"
-            name="funcao"
-            value={form.funcao}
-            onChange={handleChange}
-          />
+          ></input>
         </div>
 
         <div className={"mb-3"}>
           <label htmlFor="input-cpf" className={"form-label"}>
             CPF:
           </label>
-          <textarea
-            type="number"
+          <input
+            type="text"
             className={"form-control"}
             id="input-cpf"
             name="cpf"
             value={form.cpf}
             onChange={handleChange}
-          ></textarea>
+          ></input>
         </div>
 
         <div className={"mb-3"}>
           <label htmlFor="input-rg" className={"form-label"}>
             RG:
           </label>
-          <textarea
-            type="number"
+          <input
+            type="text"
             className={"form-control"}
             id="input-rg"
             name="rg"
             value={form.rg}
             onChange={handleChange}
-          ></textarea>
+          ></input>
         </div>
 
         <div className={"mb-3"}>
