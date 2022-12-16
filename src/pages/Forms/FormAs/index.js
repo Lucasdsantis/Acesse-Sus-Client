@@ -122,30 +122,28 @@ export function FormAS() {
           <label htmlFor="input-cpf" className={"form-label"}>
             CPF:
           </label>
-          <textarea
+          <input
             type="text"
             className={"form-control"}
             id="input-cpf"
             name="cpf"
             value={form.cpf}
             onChange={handleChange}
-            pattern={/[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}/gm}
-          ></textarea>
+          ></input>
         </div>
 
         <div className={"mb-3"}>
           <label htmlFor="input-rg" className={"form-label"}>
             RG:
           </label>
-          <textarea
+          <input
             type="text"
             className={"form-control"}
             id="input-rg"
             name="rg"
             value={form.rg}
             onChange={handleChange}
-            pattern={/[0-9]{2}[0-9]{3}[0-9]{3}[0-9]{2}/gm}
-          ></textarea>
+          ></input>
         </div>
 
         <div className={"mb-3"}>
