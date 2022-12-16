@@ -48,9 +48,9 @@ export function EditFormPAC() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    // const infosToSendForAPI = { ...form };
-    // delete infosToSendForAPI._id;
-    // console.log(infosToSendForAPI);
+    const infosToSendForAPI = { ...form };
+    delete infosToSendForAPI._id;
+    console.log(infosToSendForAPI);
 
     try {
       await api.patch(`/Root/editar_AGS/${id}`);
