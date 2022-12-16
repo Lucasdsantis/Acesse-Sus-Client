@@ -29,7 +29,6 @@ export function NavBar(props) {
     if (loggedInUser.user.role === "PAC") navigate("/paciente");
     if (loggedInUser.user.role === "MED") navigate("/medico");
     if (loggedInUser.user.role === "AGS") navigate("/agentedesaude");
-    if (loggedInUser.root.role === "AGS") navigate("/acessoroot");
   }
 
   function goHome() {
@@ -47,11 +46,6 @@ export function NavBar(props) {
             <Nav className="me-auto">
               {loggedInUser ? (
                 <>
-                  <Button variant="primary" onClick={goToProfile}>
-                    {loggedInUser.root
-                      ? loggedInUser.root.name
-                      : loggedInUser.user.name}
-                  </Button>
                   <Button
                     variant="primary"
                     onClick={() => {
