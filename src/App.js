@@ -59,7 +59,7 @@ function App() {
             element={<ProtectedRouteAGS component={FormPAC} />}
           />
           <Route
-            path="/cadastroPAC"
+            path="/editPAC"
             element={<ProtectedRouteAGS component={EditFormPAC} />}
           />
           <Route
@@ -71,7 +71,7 @@ function App() {
             element={<ProtectedRouteAGS component={FormMED} />}
           />
           <Route
-            path="/cadastroMED"
+            path="/editMED"
             element={<ProtectedRouteAGS component={EditFormMED} />}
           />
           <Route
