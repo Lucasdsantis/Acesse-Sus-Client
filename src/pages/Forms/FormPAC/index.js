@@ -26,7 +26,24 @@ export function FormPAC() {
     rg: "",
     posto: "",
     foto: "",
-    role: "PAC",
+    nomesocial: "",
+    suscard: "",
+    nacionalidade: "",
+    dataNascimento: "",
+    cor: "",
+    sexo: "",
+    nomeDaMae: "",
+    tel: "",
+    pulmaoDoenca: "",
+    fumante: "",
+    usaAlcool: "",
+    usaDrogas: "",
+    hipertenso: "",
+    diabetes: "",
+    avcderrame: "",
+    infarto: "",
+    cardioDoenca: "",
+    problemaRins: "",
   });
 
   function handleChange(e) {
@@ -37,9 +54,9 @@ export function FormPAC() {
     e.preventDefault();
 
     try {
-      await api.post("/Root/cadastrar_AGS", form);
+      await api.post("/AGS/signupPAC", form);
 
-      navigate("/acessoroot");
+      navigate("/allPAC");
     } catch (err) {
       console.log(err);
       toast.error("Oops! Something went worng...");
@@ -56,7 +73,7 @@ export function FormPAC() {
           Voltar
         </Button>
       </div>
-      <h1>Cadastro Agente de Saúde</h1>
+      <h1>Cadastro Paciente</h1>
       <form style={formBody} onSubmit={handleSubmit}>
         <div className={"mb-3"}>
           <label htmlFor="input-nome" className={"form-label"}>
@@ -68,6 +85,20 @@ export function FormPAC() {
             id="input-nome"
             name="name"
             value={form.name}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-nomesocial" className={"form-label"}>
+            nomesocial:
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-nomesocial"
+            name="nomesocial"
+            value={form.nomesocial}
             onChange={handleChange}
           />
         </div>
@@ -128,6 +159,20 @@ export function FormPAC() {
         </div>
 
         <div className={"mb-3"}>
+          <label htmlFor="input-sexo" className={"form-label"}>
+            sexo:
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-sexo"
+            name="sexo"
+            value={form.sexo}
+            onChange={handleChange}
+          ></input>
+        </div>
+
+        <div className={"mb-3"}>
           <label htmlFor="input-posto" className={"form-label"}>
             Posto:
           </label>
@@ -151,6 +196,230 @@ export function FormPAC() {
             id="input-foto"
             name="foto"
             value={form.foto}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-suscard" className={"form-label"}>
+            suscard:
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-suscard"
+            name="suscard"
+            value={form.suscard}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-fnacionalidadeoto" className={"form-label"}>
+            nacionalidade:
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-nacionalidade"
+            name="nacionalidade"
+            value={form.nacionalidade}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-dataNascimento" className={"form-label"}>
+            Data Nascimento (DD/MM/AAAA):
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-dataNascimento"
+            name="dataNascimento"
+            value={form.dataNascimento}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-cor" className={"form-label"}>
+            cor:
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-cor"
+            name="cor"
+            value={form.cor}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-nomeDaMae" className={"form-label"}>
+            Nome da mãe:
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-nomeDaMae"
+            name="nomeDaMae"
+            value={form.nomeDaMae}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-tel" className={"form-label"}>
+            telefone:
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-tel"
+            name="tel"
+            value={form.tel}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-pulmaoDoenca" className={"form-label"}>
+            Tem alguma doença no pulmão?
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-pulmaoDoenca"
+            name="pulmaoDoenca"
+            value={form.pulmaoDoenca}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-fumante" className={"form-label"}>
+            É fumante?
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-fumante"
+            name="fumante"
+            value={form.fumante}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-usaAlcool" className={"form-label"}>
+            consome Alcool?
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-usaAlcool"
+            name="usaAlcool"
+            value={form.usaAlcool}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-usaDrogas" className={"form-label"}>
+            Usa drogas?
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-usaDrogas"
+            name="usaDrogas"
+            value={form.usaDrogas}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-hipertenso" className={"form-label"}>
+            É hipertenso?
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-hipertenso"
+            name="hipertenso"
+            value={form.hipertenso}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-diabetes" className={"form-label"}>
+            Tem diabetes?
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-diabetes"
+            name="diabetes"
+            value={form.diabetes}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-avcderrame" className={"form-label"}>
+            Já sofreu avc ou derrame?
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-avcderrame"
+            name="avcderrame"
+            value={form.avcderrame}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-infarto" className={"form-label"}>
+            Já sofreu infarto?
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-infarto"
+            name="infarto"
+            value={form.infarto}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-cardioDoenca" className={"form-label"}>
+            Tem alguma Doença cardíaca?
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-cardioDoenca"
+            name="cardioDoenca"
+            value={form.cardioDoenca}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={"mb-3"}>
+          <label htmlFor="input-problemaRins" className={"form-label"}>
+            Já apresentou problema nos rins?
+          </label>
+          <input
+            type="text"
+            className={"form-control"}
+            id="input-problemaRins"
+            name="problemaRins"
+            value={form.problemaRins}
             onChange={handleChange}
           />
         </div>
