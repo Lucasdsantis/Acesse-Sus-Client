@@ -24,11 +24,7 @@ export function EditFormAs() {
   useEffect(() => {
     async function FetchAGS() {
       try {
-<<<<<<< HEAD:src/pages/editFormAs/index.js
         const response = await api.get(`/AGS/${id.id}`);
-=======
-        const response = await api.get(`/Root/get-AGS/${String(id)}`);
->>>>>>> 8b3f4c00e3eb16fa7e51097c8e9f032db13c8a07:src/pages/Forms/editFormAs/index.js
         setForm(response.data);
         console.log(form);
       } catch (err) {

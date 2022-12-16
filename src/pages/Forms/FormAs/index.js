@@ -50,11 +50,7 @@ export function FormAS() {
           <input
             type="text"
             className={"form-control"}
-<<<<<<< HEAD:src/pages/FormAs/index.js
             id="input-name"
-=======
-            id="input-nome"
->>>>>>> 8b3f4c00e3eb16fa7e51097c8e9f032db13c8a07:src/pages/Forms/FormAs/index.js
             name="name"
             value={form.name}
             onChange={handleChange}
@@ -71,10 +67,7 @@ export function FormAS() {
             name="email"
             defaultValue={form.email}
             onChange={handleChange}
-<<<<<<< HEAD:src/pages/FormAs/index.js
             type="email"
-=======
->>>>>>> 8b3f4c00e3eb16fa7e51097c8e9f032db13c8a07:src/pages/Forms/FormAs/index.js
           ></input>
         </div>
 
@@ -96,46 +89,30 @@ export function FormAS() {
           <label htmlFor="input-cpf" className={"form-label"}>
             CPF:
           </label>
-<<<<<<< HEAD:src/pages/FormAs/index.js
           <textarea
-=======
-          <input
->>>>>>> 8b3f4c00e3eb16fa7e51097c8e9f032db13c8a07:src/pages/Forms/FormAs/index.js
             type="text"
             className={"form-control"}
             id="input-cpf"
             name="cpf"
             value={form.cpf}
             onChange={handleChange}
-<<<<<<< HEAD:src/pages/FormAs/index.js
             pattern={/[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}/gm}
           ></textarea>
-=======
-          ></input>
->>>>>>> 8b3f4c00e3eb16fa7e51097c8e9f032db13c8a07:src/pages/Forms/FormAs/index.js
         </div>
 
         <div className={"mb-3"}>
           <label htmlFor="input-rg" className={"form-label"}>
             RG:
           </label>
-<<<<<<< HEAD:src/pages/FormAs/index.js
           <textarea
-=======
-          <input
->>>>>>> 8b3f4c00e3eb16fa7e51097c8e9f032db13c8a07:src/pages/Forms/FormAs/index.js
             type="text"
             className={"form-control"}
             id="input-rg"
             name="rg"
             value={form.rg}
             onChange={handleChange}
-<<<<<<< HEAD:src/pages/FormAs/index.js
             pattern={/[0-9]{2}[0-9]{3}[0-9]{3}[0-9]{2}/gm}
           ></textarea>
-=======
-          ></input>
->>>>>>> 8b3f4c00e3eb16fa7e51097c8e9f032db13c8a07:src/pages/Forms/FormAs/index.js
         </div>
 
         <div className={"mb-3"}>
