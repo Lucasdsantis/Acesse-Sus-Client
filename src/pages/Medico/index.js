@@ -69,17 +69,16 @@ export function MedicoPage() {
   async function handleSumit(e) {
     e.preventDefault();
 
-    console.log(form);
-
     try {
       const response = await api.get(`/MED/info_paciente/${form.cpf}`);
       console.log(response);
       setPaciente(response.data);
 
-      localStorage.setItem("paciente", JSON.stringify(response.data));
+      // localStorage.setItem("paciente", JSON.stringify(response.data));
     } catch (error) {
       console.log(error);
     }
+    navigate(`/consultamedica/${paciente.consulta}`);
   }
 
   return (
