@@ -1,36 +1,37 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import toast from "react-hot-toast";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { api } from "../../api/api";
+import { useNavigate, useParams } from "react-router-dom";
+import { api } from "../../../api/api";
 
-export function EditFormAs() {
+export function EditFormPAC() {
+  const editFormStyle = {
+    margin: "3rem",
+  };
+
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [img, setImg] = useState("");
-
   const [form, setForm] = useState({
-    nome: "",
+    name: "",
     email: "",
-    senha: "",
-    função: "",
     cpf: "",
     rg: "",
     posto: "",
     foto: "",
+    role: "AGS",
   });
 
   useEffect(() => {
-    async function FetchTip() {
+    async function FetchAGS() {
       try {
-        const response = await api.get(`/AGS/${id.id}`);
+        const response = await api.get(`/Root/get-AGS/${String(id)}`);
         setForm(response.data);
+        console.log(form);
       } catch (err) {
         console.log(err);
       }
     }
-    FetchTip();
+    FetchAGS();
   }, []);
 
   function handleChange(e) {
@@ -45,7 +46,7 @@ export function EditFormAs() {
     // console.log(infosToSendForAPI);
 
     try {
-      await api.patch("/edit/:id ");
+      await api.patch(`/Root/editar_AGS/${id}`);
 
       navigate(`/agentedesaude`);
     } catch (err) {
@@ -55,8 +56,8 @@ export function EditFormAs() {
   }
 
   return (
-    <center>
-      <h1>Cadastro Agente de Saúde</h1>
+    <div style={editFormStyle}>
+      <h1>Editar Agente de Saúde</h1>
       <form onSubmit={handleSubmit}>
         <div className={"mb-3"}>
           <label htmlFor="input-nome" className={"form-label"}>
@@ -67,7 +68,7 @@ export function EditFormAs() {
             className={"form-control"}
             id="input-nome"
             name="nome"
-            value={form.nome}
+            value={form.name}
             onChange={handleChange}
           />
         </div>
@@ -86,39 +87,11 @@ export function EditFormAs() {
         </div>
 
         <div className={"mb-3"}>
-          <label htmlFor="input-senha" className={"form-label"}>
-            Senha:
-          </label>
-          <select
-            type="senha"
-            className={"form-control"}
-            id="input-senha"
-            name="senha"
-            defaultValue={form.senha}
-            onChange={handleChange}
-          ></select>
-        </div>
-
-        <div className={"mb-3"}>
-          <label htmlFor="input-funcao" className={"form-label"}>
-            Função:
-          </label>
-          <input
-            type="text"
-            className={"form-control"}
-            id="input-funcao"
-            name="funcao"
-            value={form.funcao}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className={"mb-3"}>
           <label htmlFor="input-cpf" className={"form-label"}>
             CPF:
           </label>
           <textarea
-            type="number"
+            type="text"
             className={"form-control"}
             id="input-cpf"
             name="cpf"
@@ -132,7 +105,7 @@ export function EditFormAs() {
             RG:
           </label>
           <textarea
-            type="number"
+            type="text"
             className={"form-control"}
             id="input-rg"
             name="rg"
@@ -170,9 +143,9 @@ export function EditFormAs() {
         </div>
 
         <button type="submit" className="btn btn-primary">
-          Create
+          Editar
         </button>
       </form>
-    </center>
+    </div>
   );
 }

@@ -1,57 +1,77 @@
-import { useState } from "react";
-import { api } from "../../api/api";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { api } from "../../../api/api";
 
-export function FormAS() {
-  const formBody = {
-    width: "25rem",
-    margin: "2rem",
+export function EditFormAs() {
+  const editFormStyle = {
+    margin: "3rem",
   };
 
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const [form, setForm] = useState({
     name: "",
     email: "",
-    password: "",
     cpf: "",
     rg: "",
     posto: "",
     foto: "",
+    role: "AGS",
   });
+
+  useEffect(() => {
+    async function FetchAGS() {
+      try {
+<<<<<<< HEAD:src/pages/editFormAs/index.js
+        const response = await api.get(`/AGS/${id.id}`);
+=======
+        const response = await api.get(`/Root/get-AGS/${String(id)}`);
+>>>>>>> 8b3f4c00e3eb16fa7e51097c8e9f032db13c8a07:src/pages/Forms/editFormAs/index.js
+        setForm(response.data);
+        console.log(form);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    FetchAGS();
+  }, []);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
-  console.log(form);
+
   async function handleSubmit(e) {
     e.preventDefault();
 
-    try {
-      console.log(form);
-      await api.post("/Root/cadastrar_AGS", form);
+    // const infosToSendForAPI = { ...form };
+    // delete infosToSendForAPI._id;
+    // console.log(infosToSendForAPI);
 
-      navigate("/acessoroot");
+    try {
+      await api.patch(`/Root/editar_AGS/${id}`);
+
+      navigate(`/agentedesaude`);
     } catch (err) {
       console.log(err);
-      toast.error("Oops! Something went worng...");
+      toast.error("Ops! Algo deu errado ...");
     }
   }
 
   return (
-    <center>
-      <h1>Cadastro Agente de Saúde</h1>
-      <form style={formBody} onSubmit={handleSubmit}>
+    <div style={editFormStyle}>
+      <h1>Editar Agente de Saúde</h1>
+      <form onSubmit={handleSubmit}>
         <div className={"mb-3"}>
-          <label htmlFor="input-name" className={"form-label"}>
+          <label htmlFor="input-nome" className={"form-label"}>
             Nome:
           </label>
           <input
             type="text"
             className={"form-control"}
-            id="input-name"
-            name="name"
+            id="input-nome"
+            name="nome"
             value={form.name}
             onChange={handleChange}
           />
@@ -61,28 +81,13 @@ export function FormAS() {
           <label htmlFor="input-email" className={"form-label"}>
             Email:
           </label>
-          <input
+          <select
             className={"form-control"}
             id="input-email"
             name="email"
             defaultValue={form.email}
             onChange={handleChange}
-            type="email"
-          ></input>
-        </div>
-
-        <div className={"mb-3"}>
-          <label htmlFor="input-senha" className={"form-label"}>
-            Senha:
-          </label>
-          <input
-            type="password"
-            className={"form-control"}
-            id="input-senha"
-            name="password"
-            defaultValue={form.password}
-            onChange={handleChange}
-          ></input>
+          ></select>
         </div>
 
         <div className={"mb-3"}>
@@ -96,7 +101,6 @@ export function FormAS() {
             name="cpf"
             value={form.cpf}
             onChange={handleChange}
-            pattern={/[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}/gm}
           ></textarea>
         </div>
 
@@ -111,7 +115,6 @@ export function FormAS() {
             name="rg"
             value={form.rg}
             onChange={handleChange}
-            pattern={/[0-9]{2}[0-9]{3}[0-9]{3}[0-9]{2}/gm}
           ></textarea>
         </div>
 
@@ -144,9 +147,9 @@ export function FormAS() {
         </div>
 
         <button type="submit" className="btn btn-primary">
-          Create
+          Editar
         </button>
       </form>
-    </center>
+    </div>
   );
 }

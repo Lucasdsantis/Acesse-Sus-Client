@@ -112,49 +112,55 @@ export function AcessoRoot() {
     navigate("/cadastroas");
   }
 
-  function goEditForm() {
-    navigate("/editar-as");
+  function goEditForm(id) {
+    navigate(`/editformas/${id}`);
   }
 
   return (
     <>
-    <div style={cardStyle}>
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Title>Agentes de Saúde</Card.Title>
-          <Button variant="primary" onClick={goForm}>
-            Criar novo Agente de Saúde
-          </Button>
-        </Card.Body>
-      </Card>
-      <div>
-        {agenteDeSaude.map((currentAs) => {
-          return (
-            <div>
-              <Card style={cardStyleMap}>
-                <Card.Img src={currentAs.foto} />
-                <Card.Body>
-                  <Card.Title> {currentAs.name} </Card.Title>
-                  <Card.Text>
-                    {" "}
-                    Posto: {currentAs.posto} <br /> CPF: {currentAs.cpf}
-                  </Card.Text>
-                  <Button variant="success" onClick={goEditForm}>
-                    Editar
-                  </Button>
-                  <Button
-                    variant="danger"
-                    onClick={() => {
-                      handleDelete(currentAs._id);
-                    }}
-                  >
-                    Deletar
-                  </Button>
-                </Card.Body>
-              </Card>
-            </div>
-          );
-        })}
+      <div style={cardStyle}>
+        <Card style={{ width: "18rem" }}>
+          <Card.Body>
+            <Card.Title>Agentes de Saúde</Card.Title>
+            <Button variant="primary" onClick={goForm}>
+              Criar novo Agente de Saúde
+            </Button>
+          </Card.Body>
+        </Card>
+        <div>
+          {agenteDeSaude.map((currentAs) => {
+            return (
+              <div>
+                <Card style={cardStyleMap}>
+                  <Card.Img src={currentAs.foto} />
+                  <Card.Body>
+                    <Card.Title> {currentAs.name} </Card.Title>
+                    <Card.Text>
+                      {" "}
+                      Posto: {currentAs.posto} <br /> CPF: {currentAs.cpf}
+                    </Card.Text>
+                    <Button
+                      variant="success"
+                      onClick={() => {
+                        goEditForm(currentAs._id);
+                      }}
+                    >
+                      Editar
+                    </Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => {
+                        handleDelete(currentAs._id);
+                      }}
+                    >
+                      Deletar
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </>
   );
