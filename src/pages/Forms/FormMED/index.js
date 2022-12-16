@@ -45,9 +45,9 @@ export function FormMED() {
     e.preventDefault();
     console.log(form);
     try {
-      await api.post("/AGS/signup", form);
+      await api.post("/AGS/signupMED", form);
 
-      // navigate("/acessoroot");
+      navigate("/allMED");
     } catch (err) {
       console.log(err);
       toast.error("Oops! Something went worng...");
