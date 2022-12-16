@@ -9,8 +9,16 @@ import { Link } from "react-router-dom";
 export function AcessoRoot() {
   const cardStyleMap = {
     alingItems: "center",
-    width: "25rem",
+    width: "20rem",
     heigth: "10rem",
+  };
+
+  const cardCriarNovoAs = {
+    width: "20rem",
+    padding: "0",
+  };
+  const criarNovoAsBtn = {
+    margin: "2rem",
   };
 
   const cardStyle = {
@@ -22,9 +30,6 @@ export function AcessoRoot() {
   };
   const cardBody = {
     border: "none",
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
   };
 
   const divCard = {
@@ -36,6 +41,10 @@ export function AcessoRoot() {
   };
 
   const buttonInsideCard = {
+    margin: "0.5rem",
+  };
+
+  const btn = {
     margin: "0.5rem",
   };
 
@@ -119,10 +128,10 @@ export function AcessoRoot() {
   return (
     <>
       <div style={cardStyle}>
-        <Card style={{ width: "18rem" }}>
-          <Card.Body>
+        <Card style={{ width: "20rem", heigth: "10rem" }}>
+          <Card.Body style={cardCriarNovoAs}>
             <Card.Title>Agentes de Saúde</Card.Title>
-            <Button variant="primary" onClick={goForm}>
+            <Button style={criarNovoAsBtn} variant="primary" onClick={goForm}>
               Criar novo Agente de Saúde
             </Button>
           </Card.Body>
@@ -140,6 +149,7 @@ export function AcessoRoot() {
                       Posto: {currentAs.posto} <br /> CPF: {currentAs.cpf}
                     </Card.Text>
                     <Button
+                      style={btn}
                       variant="success"
                       onClick={() => {
                         goEditForm(currentAs._id);
@@ -148,6 +158,7 @@ export function AcessoRoot() {
                       Editar
                     </Button>
                     <Button
+                      style={btn}
                       variant="danger"
                       onClick={() => {
                         handleDelete(currentAs._id);
