@@ -51,6 +51,11 @@ export function NavBar(props) {
             <Nav className="me-auto">
               {loggedInUser ? (
                 <>
+                  <Button variant="primary" onClick={goToProfile}>
+                    {loggedInUser.user
+                      ? loggedInUser.user.name
+                      : loggedInUser.root.name}
+                  </Button>
                   <Button
                     variant="primary"
                     onClick={() => {
