@@ -32,6 +32,24 @@ export function EditFormMED() {
     role: "MED",
   });
 
+  const [img, setImg] = useState("");
+  function handleImage(e) {
+    setImg(e.target.files[0]);
+  }
+
+  async function handleUpload() {
+    try {
+      const uploadData = new FormData();
+      uploadData.append("picture", img);
+
+      const response = await api.post("/upload_img/edit", uploadData);
+
+      return response.data.url;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     async function FetchAGS() {
       try {
@@ -57,7 +75,8 @@ export function EditFormMED() {
     console.log(infosToSendForAPI);
 
     try {
-      await api.patch(`/AGS/editMED/${id}`, infosToSendForAPI);
+      const imgURL = await handleUpload();
+      await api.patch(`/AGS/editMED/${id}`, { ...form, foto: imgURL });
 
       navigate(`/allMED`);
     } catch (err) {
@@ -231,19 +250,8 @@ export function EditFormMED() {
           />
         </div>
 
-        <div className={"mb-3"}>
-          <label htmlFor="input-foto" className={"form-label"}>
-            Link da Foto:
-          </label>
-          <input
-            type="text"
-            className={"form-control"}
-            id="input-foto"
-            name="foto"
-            value={form.foto}
-            onChange={handleChange}
-          />
-        </div>
+        <label htmlFor="formImg">Sua foto de perfil:</label>
+        <input type="file" id="formImg" onChange={handleImage} />
 
         <button type="submit" className="btn btn-primary">
           Editar

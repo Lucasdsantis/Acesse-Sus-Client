@@ -25,7 +25,6 @@ export function FormPAC() {
     cpf: "",
     rg: "",
     posto: "",
-    foto: "",
     nomesocial: "",
     suscard: "",
     nacionalidade: "",
@@ -46,6 +45,24 @@ export function FormPAC() {
     problemaRins: "",
   });
 
+  const [img, setImg] = useState("");
+  function handleImage(e) {
+    setImg(e.target.files[0]);
+  }
+
+  async function handleUpload() {
+    try {
+      const uploadData = new FormData();
+      uploadData.append("picture", img);
+
+      const response = await api.post("/upload_img", uploadData);
+
+      return response.data.url;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
@@ -54,7 +71,8 @@ export function FormPAC() {
     e.preventDefault();
 
     try {
-      await api.post("/AGS/signupPAC", form);
+      const imgURL = await handleUpload();
+      await api.post("/AGS/signupPAC", { ...form, foto: imgURL });
 
       navigate("/allPAC");
     } catch (err) {
@@ -186,19 +204,8 @@ export function FormPAC() {
           />
         </div>
 
-        <div className={"mb-3"}>
-          <label htmlFor="input-foto" className={"form-label"}>
-            Link da Foto:
-          </label>
-          <input
-            type="text"
-            className={"form-control"}
-            id="input-foto"
-            name="foto"
-            value={form.foto}
-            onChange={handleChange}
-          />
-        </div>
+        <label htmlFor="formImg">Sua foto de perfil:</label>
+        <input type="file" id="formImg" onChange={handleImage} />
 
         <div className={"mb-3"}>
           <label htmlFor="input-suscard" className={"form-label"}>

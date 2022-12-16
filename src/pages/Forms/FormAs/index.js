@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { api } from "../../../api/api";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export function FormAS() {
   const formBody = {
     width: "25rem",
     margin: "2rem",
+  };
+
+  const buttonBackStyle = {
+    display: "flex",
+    justifyContent: "flex-end",
+    margin: "1rem",
   };
 
   const navigate = useNavigate();
@@ -18,8 +25,25 @@ export function FormAS() {
     cpf: "",
     rg: "",
     posto: "",
-    foto: "",
   });
+
+  const [img, setImg] = useState("");
+  function handleImage(e) {
+    setImg(e.target.files[0]);
+  }
+
+  async function handleUpload() {
+    try {
+      const uploadData = new FormData();
+      uploadData.append("picture", img);
+
+      const response = await api.post("/upload_img", uploadData);
+
+      return response.data.url;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -29,8 +53,8 @@ export function FormAS() {
     e.preventDefault();
 
     try {
-      console.log(form);
-      await api.post("/Root/cadastrar_AGS", form);
+      const imgURL = await handleUpload();
+      await api.post("/Root/cadastrar_AGS", { ...form, foto: imgURL });
 
       navigate("/acessoroot");
     } catch (err) {
@@ -39,8 +63,17 @@ export function FormAS() {
     }
   }
 
+  function goBack() {
+    navigate("/acessoroot");
+  }
+
   return (
     <center>
+      <div style={buttonBackStyle}>
+        <Button variant="secondary" onClick={goBack}>
+          Voltar
+        </Button>
+      </div>
       <h1>Cadastro Agente de Saúde</h1>
       <form style={formBody} onSubmit={handleSubmit}>
         <div className={"mb-3"}>
@@ -129,19 +162,8 @@ export function FormAS() {
           />
         </div>
 
-        <div className={"mb-3"}>
-          <label htmlFor="input-foto" className={"form-label"}>
-            Link da Foto:
-          </label>
-          <input
-            type="text"
-            className={"form-control"}
-            id="input-foto"
-            name="foto"
-            value={form.foto}
-            onChange={handleChange}
-          />
-        </div>
+        <label htmlFor="formImg">Sua foto de perfil:</label>
+        <input type="file" id="formImg" onChange={handleImage} />
 
         <button type="submit" className="btn btn-primary">
           Create

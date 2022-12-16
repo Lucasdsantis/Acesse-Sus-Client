@@ -2,10 +2,17 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../../api/api";
+import Button from "react-bootstrap/Button";
 
 export function EditFormAs() {
   const editFormStyle = {
     margin: "3rem",
+  };
+
+  const buttonBackStyle = {
+    display: "flex",
+    justifyContent: "flex-end",
+    margin: "1rem",
   };
 
   const navigate = useNavigate();
@@ -24,15 +31,32 @@ export function EditFormAs() {
   useEffect(() => {
     async function FetchAGS() {
       try {
-        const response = await api.get(`/AGS/${id.id}`);
+        const response = await api.get(`/Root/get-AGS/${id}`);
         setForm(response.data);
-        console.log(form);
       } catch (err) {
         console.log(err);
       }
     }
     FetchAGS();
   }, []);
+
+  const [img, setImg] = useState("");
+  function handleImage(e) {
+    setImg(e.target.files[0]);
+  }
+
+  async function handleUpload() {
+    try {
+      const uploadData = new FormData();
+      uploadData.append("picture", img);
+
+      const response = await api.post("/upload_img/edit", uploadData);
+
+      return response.data.url;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -41,33 +65,43 @@ export function EditFormAs() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    // const infosToSendForAPI = { ...form };
-    // delete infosToSendForAPI._id;
-    // console.log(infosToSendForAPI);
+    const infosToSendForAPI = { ...form };
+    delete infosToSendForAPI._id;
+    console.log(infosToSendForAPI);
 
     try {
-      await api.patch(`/Root/editar_AGS/${id}`);
+      const imgURL = await handleUpload();
+      await api.patch(`/Root/editar_AGS/${id}`, { ...form, foto: imgURL });
 
-      navigate(`/agentedesaude`);
+      navigate(`/acessoroot`);
     } catch (err) {
       console.log(err);
       toast.error("Ops! Algo deu errado ...");
     }
   }
 
+  function goBack() {
+    navigate("/acessoroot");
+  }
+
   return (
     <div style={editFormStyle}>
+      <div style={buttonBackStyle}>
+        <Button variant="secondary" onClick={goBack}>
+          Voltar
+        </Button>
+      </div>
       <h1>Editar Agente de Saúde</h1>
       <form onSubmit={handleSubmit}>
         <div className={"mb-3"}>
-          <label htmlFor="input-nome" className={"form-label"}>
+          <label htmlFor="input-name" className={"form-label"}>
             Nome:
           </label>
           <input
             type="text"
             className={"form-control"}
-            id="input-nome"
-            name="nome"
+            id="input-name"
+            name="name"
             value={form.name}
             onChange={handleChange}
           />
@@ -77,13 +111,13 @@ export function EditFormAs() {
           <label htmlFor="input-email" className={"form-label"}>
             Email:
           </label>
-          <select
+          <input
             className={"form-control"}
             id="input-email"
             name="email"
-            defaultValue={form.email}
+            value={form.email}
             onChange={handleChange}
-          ></select>
+          ></input>
         </div>
 
         <div className={"mb-3"}>
@@ -128,19 +162,9 @@ export function EditFormAs() {
           />
         </div>
 
-        <div className={"mb-3"}>
-          <label htmlFor="input-foto" className={"form-label"}>
-            Link da Foto:
-          </label>
-          <input
-            type="text"
-            className={"form-control"}
-            id="input-foto"
-            name="foto"
-            value={form.foto}
-            onChange={handleChange}
-          />
-        </div>
+        <label htmlFor="formImg">Sua foto de perfil:</label>
+        <input type="file" id="formImg" onChange={handleImage} />
+        <br></br>
 
         <button type="submit" className="btn btn-primary">
           Editar
