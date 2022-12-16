@@ -5,6 +5,8 @@ import Card from "react-bootstrap/Card";
 import { useState } from "react";
 import { api } from "../../api/api";
 
+import { useNavigate } from "react-router-dom";
+
 export function EsqueciSenha(props) {
   const cardStyle = {
     width: "25rem",
@@ -15,6 +17,8 @@ export function EsqueciSenha(props) {
     flexDirection: "column",
     gap: "0.8rem",
   };
+
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     email: "",
@@ -30,8 +34,6 @@ export function EsqueciSenha(props) {
 
     try {
       await api.post("/esqueci_senha", form);
-
-      // toast
     } catch (error) {
       console.log(error);
     }
