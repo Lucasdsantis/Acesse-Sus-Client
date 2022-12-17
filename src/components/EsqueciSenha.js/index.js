@@ -6,6 +6,7 @@ import { useState } from "react";
 import { api } from "../../api/api";
 
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export function EsqueciSenha(props) {
   const cardStyle = {
@@ -17,8 +18,6 @@ export function EsqueciSenha(props) {
     flexDirection: "column",
     gap: "0.8rem",
   };
-
-  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     email: "",
@@ -34,8 +33,10 @@ export function EsqueciSenha(props) {
 
     try {
       await api.post("/esqueci_senha", form);
+      toast.success("Email enviado!");
     } catch (error) {
       console.log(error);
+      toast.error("Ops! Algo deu errado...");
     }
   }
 
@@ -56,7 +57,7 @@ export function EsqueciSenha(props) {
               />
               <Form.Text className="text-muted">
                 Enviaremos uma nova senha para seu email <br />
-                (Não deixe de conferir a caixa de Spam e a Lixeira).
+                (Confira sua caixa de Spam e a Lixeira).
               </Form.Text>
             </Form.Group>
 
