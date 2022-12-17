@@ -2,10 +2,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../api/api";
 
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 export function EsqueciSenha(props) {
